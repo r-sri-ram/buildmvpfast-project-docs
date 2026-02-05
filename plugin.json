@@ -1,0 +1,24 @@
+{
+  "name": "buildmvpfast-project-docs",
+  "version": "1.0.0",
+  "description": "Generate professional project documentation (PRD, Tech Stack, User Flows, Database Schema, Design Guidelines, Task List, and 9 custom doc types) directly from Claude Code. The open-source version of ProjectDocsEngine.com.",
+  "author": "BuildMVPFast",
+  "homepage": "https://buildmvpfast.com",
+  "repository": "https://github.com/r-sri-ram/buildmvpfast-project-docs",
+  "license": "MIT",
+  "keywords": [
+    "documentation",
+    "prd",
+    "technical-documentation",
+    "project-planning",
+    "software-development",
+    "requirements",
+    "architecture"
+  ],
+  "skills": [
+    "project-docs",
+    "analyze-project",
+    "add-doc",
+    "update-docs"
+  ]
+}
