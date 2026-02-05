@@ -40,42 +40,279 @@ then use /add-doc to add custom documents.
 
 ## No Argument Provided
 
-If no argument given, show the menu:
+If no argument given, USE AskUserQuestion to select document type:
 
 ```
-## Add Custom Document
-
-Which document would you like to add?
-
-1. **api** - API Specification
-   REST/GraphQL endpoints, request/response formats, authentication
-
-2. **testing** - QA Testing Strategy
-   Testing approach, test cases, coverage requirements
-
-3. **integration** - Integration Architecture
-   Third-party services, webhooks, external APIs
-
-4. **performance** - Performance Optimization
-   Caching strategies, optimization guidelines, benchmarks
-
-5. **legal** - Legal Compliance
-   Privacy policy, GDPR compliance, terms of service
-
-6. **marketing** - Marketing & SEO
-   Marketing strategy, SEO optimization, content plan
-
-7. **accessibility** - Accessibility Guidelines
-   WCAG compliance, screen reader support, keyboard navigation
-
-8. **monetization** - Monetization Plan
-   Pricing tiers, revenue models, conversion strategy
-
-9. **governance** - Governance Plan
-   Decision-making process, contribution guidelines, roadmap
-
-Enter your choice (e.g., "api" or "1"):
+AskUserQuestion({
+  questions: [{
+    question: "Which custom document would you like to add?",
+    header: "Doc Type",
+    options: [
+      { label: "API Specification", description: "REST/GraphQL endpoints, authentication" },
+      { label: "QA Testing", description: "Testing strategy, test cases, coverage" },
+      { label: "Integration Architecture", description: "Third-party services, webhooks" },
+      { label: "Performance Optimization", description: "Caching, benchmarks, optimization" }
+    ],
+    multiSelect: false
+  }]
+})
 ```
+
+If user needs more options, show second selection:
+```
+AskUserQuestion({
+  questions: [{
+    question: "Or choose from these additional documents:",
+    header: "More Docs",
+    options: [
+      { label: "Legal Compliance", description: "Privacy policy, GDPR, terms" },
+      { label: "Marketing SEO", description: "Marketing strategy, SEO plan" },
+      { label: "Accessibility Guidelines", description: "WCAG compliance, a11y" },
+      { label: "Monetization Plan", description: "Pricing tiers, revenue models" }
+    ],
+    multiSelect: false
+  }]
+})
+```
+
+Additional option: Governance Plan (decision-making, contribution guidelines)
+
+## Document-Specific Wizards
+
+**IMPORTANT:** After selecting document type, run a mini-wizard to gather specific information.
+
+### API Specification Wizard
+```
+AskUserQuestion({
+  questions: [
+    {
+      question: "What API style will you use?",
+      header: "API Style",
+      options: [
+        { label: "REST", description: "Traditional RESTful API" },
+        { label: "GraphQL", description: "Query-based API" },
+        { label: "Both", description: "REST + GraphQL" },
+        { label: "Not sure", description: "Recommend based on project" }
+      ],
+      multiSelect: false
+    },
+    {
+      question: "What authentication method?",
+      header: "Auth",
+      options: [
+        { label: "JWT Tokens", description: "JSON Web Tokens" },
+        { label: "API Keys", description: "Simple API key auth" },
+        { label: "OAuth 2.0", description: "Third-party OAuth" },
+        { label: "Session-based", description: "Cookie sessions" }
+      ],
+      multiSelect: false
+    }
+  ]
+})
+```
+
+### QA Testing Wizard
+```
+AskUserQuestion({
+  questions: [
+    {
+      question: "What's your target test coverage?",
+      header: "Coverage",
+      options: [
+        { label: "60-70%", description: "Basic coverage for MVP" },
+        { label: "70-80%", description: "Standard coverage" },
+        { label: "80-90%", description: "High coverage" },
+        { label: "90%+", description: "Comprehensive coverage" }
+      ],
+      multiSelect: false
+    },
+    {
+      question: "Which testing types do you need?",
+      header: "Test Types",
+      options: [
+        { label: "Unit Tests", description: "Individual function testing" },
+        { label: "Integration Tests", description: "Component interaction testing" },
+        { label: "E2E Tests", description: "Full user flow testing" },
+        { label: "All of the above", description: "Comprehensive testing" }
+      ],
+      multiSelect: true
+    }
+  ]
+})
+```
+
+### Integration Architecture Wizard
+```
+AskUserQuestion({
+  questions: [{
+    question: "Which integrations do you need? Select all that apply.",
+    header: "Integrations",
+    options: [
+      { label: "Payment (Stripe/PayPal)", description: "Payment processing" },
+      { label: "Auth (Google/GitHub)", description: "OAuth providers" },
+      { label: "Email (SendGrid/Resend)", description: "Email services" },
+      { label: "Analytics (GA/Mixpanel)", description: "Tracking & analytics" }
+    ],
+    multiSelect: true
+  }]
+})
+```
+
+### Performance Optimization Wizard
+```
+AskUserQuestion({
+  questions: [
+    {
+      question: "What's your primary performance concern?",
+      header: "Focus",
+      options: [
+        { label: "Page Load Speed", description: "Frontend performance" },
+        { label: "API Response Time", description: "Backend performance" },
+        { label: "Database Queries", description: "Query optimization" },
+        { label: "All areas", description: "Comprehensive optimization" }
+      ],
+      multiSelect: false
+    },
+    {
+      question: "What caching strategy do you prefer?",
+      header: "Caching",
+      options: [
+        { label: "CDN + Browser", description: "Static asset caching" },
+        { label: "Redis/Memcached", description: "Server-side caching" },
+        { label: "Both", description: "Multi-layer caching" },
+        { label: "Not sure", description: "Recommend based on stack" }
+      ],
+      multiSelect: false
+    }
+  ]
+})
+```
+
+### Legal Compliance Wizard
+```
+AskUserQuestion({
+  questions: [
+    {
+      question: "Which regions will you operate in?",
+      header: "Regions",
+      options: [
+        { label: "US only", description: "US regulations" },
+        { label: "EU (GDPR)", description: "GDPR compliance required" },
+        { label: "Global", description: "Multiple jurisdictions" },
+        { label: "Not sure yet", description: "General compliance" }
+      ],
+      multiSelect: false
+    },
+    {
+      question: "What data do you collect?",
+      header: "Data Types",
+      options: [
+        { label: "Basic (email, name)", description: "Standard user data" },
+        { label: "Payment info", description: "Financial data" },
+        { label: "Health/Medical", description: "HIPAA considerations" },
+        { label: "Children's data", description: "COPPA considerations" }
+      ],
+      multiSelect: true
+    }
+  ]
+})
+```
+
+### Marketing SEO Wizard
+```
+AskUserQuestion({
+  questions: [
+    {
+      question: "What's your primary marketing channel?",
+      header: "Channel",
+      options: [
+        { label: "SEO/Content", description: "Organic search traffic" },
+        { label: "Social Media", description: "Social platforms" },
+        { label: "Paid Ads", description: "PPC advertising" },
+        { label: "All channels", description: "Multi-channel approach" }
+      ],
+      multiSelect: false
+    },
+    {
+      question: "What's your target audience?",
+      header: "Audience",
+      options: [
+        { label: "B2B", description: "Business customers" },
+        { label: "B2C", description: "Consumer market" },
+        { label: "Developers", description: "Technical audience" },
+        { label: "Mixed", description: "Multiple segments" }
+      ],
+      multiSelect: false
+    }
+  ]
+})
+```
+
+### Accessibility Guidelines Wizard
+```
+AskUserQuestion({
+  questions: [{
+    question: "What WCAG compliance level do you need?",
+    header: "WCAG Level",
+    options: [
+      { label: "WCAG 2.1 Level A", description: "Basic accessibility" },
+      { label: "WCAG 2.1 Level AA", description: "Standard (recommended)" },
+      { label: "WCAG 2.1 Level AAA", description: "Highest standard" },
+      { label: "Not sure", description: "Recommend Level AA" }
+    ],
+    multiSelect: false
+  }]
+})
+```
+
+### Monetization Plan Wizard
+```
+AskUserQuestion({
+  questions: [
+    {
+      question: "What's your pricing model?",
+      header: "Pricing",
+      options: [
+        { label: "Subscription", description: "Monthly/yearly plans" },
+        { label: "Usage-based", description: "Pay per use" },
+        { label: "Freemium", description: "Free tier + paid" },
+        { label: "One-time", description: "Lifetime purchase" }
+      ],
+      multiSelect: false
+    },
+    {
+      question: "How many pricing tiers?",
+      header: "Tiers",
+      options: [
+        { label: "2 tiers", description: "Free + Paid" },
+        { label: "3 tiers", description: "Free + Pro + Enterprise" },
+        { label: "4+ tiers", description: "Multiple plans" },
+        { label: "Custom", description: "Enterprise quotes only" }
+      ],
+      multiSelect: false
+    }
+  ]
+})
+```
+
+### Governance Plan Wizard
+```
+AskUserQuestion({
+  questions: [{
+    question: "What type of project governance?",
+    header: "Governance",
+    options: [
+      { label: "Open Source", description: "Community-driven" },
+      { label: "Internal Team", description: "Company project" },
+      { label: "Client Project", description: "Agency/consulting" },
+      { label: "Startup", description: "Founder-led" }
+    ],
+    multiSelect: false
+  }]
+})
+```
+
+---
 
 ## Generation Process
 
@@ -92,6 +329,7 @@ Read existing documentation to extract:
 
 Generate the custom document using:
 - Template from `templates/custom/[type].md`
+- **Wizard responses** to customize content
 - Cross-references to existing FR-X, TS-X, etc.
 - Project-specific context
 
