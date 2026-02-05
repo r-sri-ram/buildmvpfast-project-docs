@@ -9,7 +9,10 @@
     {
       "name": "buildmvpfast-project-docs",
       "description": "Generate professional project documentation (15 document types) with a single command",
-      "source": "."
+      "source": {
+        "type": "local",
+        "path": "."
+      }
     }
   ]
 }
