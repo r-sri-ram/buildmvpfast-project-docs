@@ -34,11 +34,36 @@ Generate comprehensive, professional project documentation with cross-referenced
 
 Group related questions and confirm understanding before proceeding:
 
-**Essential Questions (Required):**
+**Essential Questions (Required) - USE AskUserQuestion for ALL:**
 
-1. **Project Name & Vision** (text input - just ask directly)
-   - "What's your project called?"
-   - "In one sentence, what problem does it solve?"
+1. **Project Name & Vision** - USE AskUserQuestion tool:
+   ```
+   AskUserQuestion({
+     questions: [
+       {
+         question: "What's your project called?",
+         header: "Name",
+         options: [
+           { label: "I'll type it", description: "Select 'Other' to enter your project name" }
+         ],
+         multiSelect: false
+       }
+     ]
+   })
+   ```
+   Then ask for vision:
+   ```
+   AskUserQuestion({
+     questions: [{
+       question: "In one sentence, what problem does it solve?",
+       header: "Vision",
+       options: [
+         { label: "I'll describe it", description: "Select 'Other' to describe your project" }
+       ],
+       multiSelect: false
+     }]
+   })
+   ```
 
 2. **Project Type** - USE AskUserQuestion tool:
    ```
@@ -47,9 +72,9 @@ Group related questions and confirm understanding before proceeding:
        question: "What type of project is this?",
        header: "Project Type",
        options: [
-         { label: "SaaS", description: "Software as a Service - subscription-based web application" },
+         { label: "SaaS", description: "Software as a Service - subscription-based web app" },
          { label: "E-commerce", description: "Online store selling products or services" },
-         { label: "Mobile App", description: "iOS/Android native or hybrid mobile application" },
+         { label: "Mobile App", description: "iOS/Android native or hybrid application" },
          { label: "API/Backend", description: "API service, microservice, or backend system" }
        ],
        multiSelect: false
@@ -57,13 +82,68 @@ Group related questions and confirm understanding before proceeding:
    })
    ```
 
-3. **Target Audience** (text input - just ask directly)
-   - "Who are your primary users?"
-   - "What are their main pain points?"
+3. **Target Audience** - USE AskUserQuestion tool:
+   ```
+   AskUserQuestion({
+     questions: [
+       {
+         question: "Who are your primary users?",
+         header: "Users",
+         options: [
+           { label: "Businesses (B2B)", description: "Companies, teams, enterprises" },
+           { label: "Consumers (B2C)", description: "Individual end users" },
+           { label: "Developers", description: "Software engineers, technical users" },
+           { label: "Both B2B & B2C", description: "Multiple user segments" }
+         ],
+         multiSelect: false
+       },
+       {
+         question: "What are their main pain points?",
+         header: "Pain Points",
+         options: [
+           { label: "Time/Efficiency", description: "Tasks take too long, need automation" },
+           { label: "Cost", description: "Current solutions too expensive" },
+           { label: "Complexity", description: "Existing tools hard to use" },
+           { label: "Collaboration", description: "Team coordination issues" }
+         ],
+         multiSelect: true
+       }
+     ]
+   })
+   ```
 
-4. **Core Features** (text input - just ask directly)
-   - "What are the 3-5 most important features?"
-   - "What makes your solution unique?"
+4. **Core Features** - USE AskUserQuestion tool:
+   ```
+   AskUserQuestion({
+     questions: [{
+       question: "What are the most important features? Select all that apply.",
+       header: "Features",
+       options: [
+         { label: "User Authentication", description: "Login, signup, OAuth" },
+         { label: "Dashboard/Analytics", description: "Data visualization, reports" },
+         { label: "Payments/Billing", description: "Subscriptions, checkout" },
+         { label: "Real-time Features", description: "Chat, notifications, live updates" }
+       ],
+       multiSelect: true
+     }]
+   })
+   ```
+   Then ask for unique value:
+   ```
+   AskUserQuestion({
+     questions: [{
+       question: "What makes your solution unique?",
+       header: "Differentiator",
+       options: [
+         { label: "Better UX", description: "Simpler, more intuitive than competitors" },
+         { label: "Lower Price", description: "More affordable solution" },
+         { label: "More Features", description: "Comprehensive all-in-one platform" },
+         { label: "Niche Focus", description: "Specialized for specific industry/use case" }
+       ],
+       multiSelect: false
+     }]
+   })
+   ```
 
 5. **Tech Stack Preferences** - USE AskUserQuestion tool:
    ```
@@ -95,16 +175,58 @@ Group related questions and confirm understanding before proceeding:
    })
    ```
 
-**Optional Questions (Ask if relevant):**
+**Optional Questions (Ask if relevant) - USE AskUserQuestion for ALL:**
 
-6. **Timeline & Milestones** (text input)
-   - "Any specific deadlines or milestones?"
+6. **Timeline** - USE AskUserQuestion tool:
+   ```
+   AskUserQuestion({
+     questions: [{
+       question: "What's your timeline for MVP?",
+       header: "Timeline",
+       options: [
+         { label: "1-2 weeks", description: "Quick prototype or proof of concept" },
+         { label: "1-2 months", description: "Basic MVP with core features" },
+         { label: "3-6 months", description: "Full-featured MVP" },
+         { label: "Flexible", description: "No specific deadline" }
+       ],
+       multiSelect: false
+     }]
+   })
+   ```
 
-7. **Team Size** (text input)
-   - "How many developers will work on this?"
+7. **Team Size** - USE AskUserQuestion tool:
+   ```
+   AskUserQuestion({
+     questions: [{
+       question: "How many developers will work on this?",
+       header: "Team Size",
+       options: [
+         { label: "Solo", description: "Just me" },
+         { label: "2-3 devs", description: "Small team" },
+         { label: "4-10 devs", description: "Medium team" },
+         { label: "10+ devs", description: "Large team" }
+       ],
+       multiSelect: false
+     }]
+   })
+   ```
 
-8. **Budget Considerations** (text input)
-   - "Any budget constraints affecting technology choices?"
+8. **Budget** - USE AskUserQuestion tool:
+   ```
+   AskUserQuestion({
+     questions: [{
+       question: "Any budget constraints affecting technology choices?",
+       header: "Budget",
+       options: [
+         { label: "Minimal/Free", description: "Use free tiers, open source only" },
+         { label: "Low ($0-100/mo)", description: "Basic paid services OK" },
+         { label: "Medium ($100-500/mo)", description: "Standard SaaS tools OK" },
+         { label: "Flexible", description: "Budget not a constraint" }
+       ],
+       multiSelect: false
+     }]
+   })
+   ```
 
 9. **Business Model** - USE AskUserQuestion tool:
    ```
@@ -123,9 +245,22 @@ Group related questions and confirm understanding before proceeding:
    })
    ```
 
-10. **Competition & Differentiation** (text input)
-    - "Who are your main competitors?"
-    - "What's your unique advantage?"
+10. **Competition** - USE AskUserQuestion tool:
+    ```
+    AskUserQuestion({
+      questions: [{
+        question: "Do you have identified competitors?",
+        header: "Competition",
+        options: [
+          { label: "Yes, direct competitors", description: "I know who they are - select Other to name them" },
+          { label: "Indirect competitors", description: "Different solutions to same problem" },
+          { label: "Blue ocean", description: "No direct competition, new market" },
+          { label: "Not sure yet", description: "Need to research competition" }
+        ],
+        multiSelect: false
+      }]
+    })
+    ```
 
 ### Step 2: Confirm Context
 
