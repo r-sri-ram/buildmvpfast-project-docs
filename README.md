@@ -163,13 +163,31 @@ See the `examples/` folder for sample documentation generated for:
 
 ## Contributing
 
-Contributions welcome! Please read our contributing guidelines.
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+**Quick start:**
+```bash
+# Fork and clone
+git clone https://github.com/YOUR-USERNAME/buildmvpfast-project-docs.git
+
+# Create branch
+git checkout -b feature/your-feature
+
+# Make changes, then test locally
+cp -r skills/* ~/.claude/skills/
+
+# Commit and push
+git add . && git commit -m "feat: your feature"
+git push origin feature/your-feature
+
+# Open a Pull Request on GitHub
+```
+
+**What you can contribute:**
+- New document templates
+- Improved wizard questions
+- Bug fixes
+- Documentation improvements
 
 ## License
 
