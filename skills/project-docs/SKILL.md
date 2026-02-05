@@ -11,16 +11,40 @@ Generate comprehensive, professional project documentation with cross-referenced
 
 ## Mode Selection
 
-**If argument is "new" or no codebase exists:**
-→ Run Conversational Wizard Mode
+**IMPORTANT: NEVER auto-generate documents without user confirmation.**
 
-**If argument is "analyze" or codebase detected:**
-→ Run Codebase Analysis Mode
+**If argument is "new":**
+→ Run Conversational Wizard Mode (Step 1 below)
 
-**If no argument:**
-→ Auto-detect: Check for package.json, requirements.txt, Cargo.toml, go.mod, etc.
-   - If found: Suggest analysis mode
-   - If not found: Start wizard mode
+**If argument is "analyze":**
+→ Run Codebase Analysis Mode (MODE 2 below)
+
+**If no argument provided:**
+→ MUST ask user first using AskUserQuestion:
+
+```
+AskUserQuestion({
+  questions: [{
+    question: "What would you like to do?",
+    header: "Mode",
+    options: [
+      { label: "New Project", description: "Start wizard to create docs for a new project idea" },
+      { label: "Analyze Codebase", description: "Generate docs from existing code in this folder" },
+      { label: "Just browsing", description: "Show me what this skill can do" }
+    ],
+    multiSelect: false
+  }]
+})
+```
+
+**If codebase files detected (package.json, etc.) AND no argument:**
+→ Still ASK the user first, but mention what was found:
+
+"I detected an existing codebase with [package.json/requirements.txt/etc.]. Would you like me to analyze it?"
+
+Then use AskUserQuestion above to confirm.
+
+**NEVER start generating documents without explicit user confirmation.**
 
 ---
 
