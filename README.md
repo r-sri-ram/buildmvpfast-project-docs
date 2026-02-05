@@ -14,27 +14,13 @@ Generate professional project documentation directly from Claude Code. Create PR
 
 ## Installation
 
-### Option 1: npx skills (Recommended)
-
-Install skills directly using [npx skills](https://skills.sh):
+### Option 1: One-Line Install (Recommended)
 
 ```bash
-# Install all skills
-npx skills add r-sri-ram/buildmvpfast-project-docs
-
-# Install specific skills only
-npx skills add r-sri-ram/buildmvpfast-project-docs --skill project-docs
-npx skills add r-sri-ram/buildmvpfast-project-docs --skill add-doc
-
-# List available skills
-npx skills add r-sri-ram/buildmvpfast-project-docs --list
+git clone https://github.com/r-sri-ram/buildmvpfast-project-docs.git && cp -r buildmvpfast-project-docs/skills/* ~/.claude/skills/ && rm -rf buildmvpfast-project-docs
 ```
 
-This automatically installs to your `~/.claude/skills/` directory.
-
 ### Option 2: Manual Installation
-
-Clone and copy skills to your Claude Code directory:
 
 ```bash
 # Clone the repository
@@ -42,7 +28,20 @@ git clone https://github.com/r-sri-ram/buildmvpfast-project-docs.git
 
 # Copy skills to Claude Code skills directory
 cp -r buildmvpfast-project-docs/skills/* ~/.claude/skills/
+
+# Clean up
+rm -rf buildmvpfast-project-docs
 ```
+
+### Option 3: npx skills (Project-Local)
+
+Install to current project only using [npx skills](https://skills.sh):
+
+```bash
+npx skills add r-sri-ram/buildmvpfast-project-docs
+```
+
+> **Note:** This installs to `.agents/skills/` in your project, not globally.
 
 ## Quick Start
 
