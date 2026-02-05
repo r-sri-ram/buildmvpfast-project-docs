@@ -14,45 +14,54 @@ Generate professional project documentation directly from Claude Code. Create PR
 
 ## Installation
 
-### Option 1: CLI Install (Recommended)
-
-Use [npx skills](https://www.npmjs.com/package/skills) to install skills directly:
-
-```bash
-# Install all skills
-npx skills add r-sri-ram/buildmvpfast-project-docs
-
-# Install specific skills
-npx skills add r-sri-ram/buildmvpfast-project-docs --skill project-docs add-doc
-
-# List available skills
-npx skills add r-sri-ram/buildmvpfast-project-docs --list
-```
-
-This automatically installs to your `.claude/skills/` directory.
-
-### Option 2: Claude Code Plugin
+### Option 1: Claude Code Plugin (Recommended)
 
 Install via Claude Code's built-in plugin system:
 
 ```bash
-# Add the marketplace
+# Step 1: Add the marketplace
 /plugin marketplace add r-sri-ram/buildmvpfast-project-docs
 
-# Install all project docs skills
-/plugin install buildmvpfast-project-docs
+# Step 2: Install the plugin
+/plugin install buildmvpfast-project-docs@buildmvpfast
 ```
 
-### Option 3: Manual Installation
+Or use the interactive plugin manager:
+```bash
+/plugin
+# Navigate to "Discover" tab and search for "buildmvpfast"
+```
 
-Clone and install locally:
+### Option 2: Manual Installation
+
+Clone and copy skills to your Claude Code directory:
 
 ```bash
+# Clone the repository
 git clone https://github.com/r-sri-ram/buildmvpfast-project-docs.git
-cd buildmvpfast-project-docs
 
-# Copy skills to your Claude Code skills directory
-cp -r skills/* ~/.claude/skills/
+# Copy skills to Claude Code skills directory
+cp -r buildmvpfast-project-docs/skills/* ~/.claude/skills/
+```
+
+### Option 3: Project-Level Installation
+
+Add to your project's `.claude/settings.json` for team sharing:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "buildmvpfast": {
+      "source": {
+        "source": "github",
+        "repo": "r-sri-ram/buildmvpfast-project-docs"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "buildmvpfast-project-docs@buildmvpfast": true
+  }
+}
 ```
 
 ## Quick Start
