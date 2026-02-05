@@ -30,6 +30,8 @@ Generate comprehensive, professional project documentation with cross-referenced
 
 **IMPORTANT: Use the `AskUserQuestion` tool for ALL selection questions.** This provides clickable options instead of requiring manual typing.
 
+**Note:** The AskUserQuestion tool automatically includes an "Other" option that allows users to type custom responses. You don't need to add it explicitly.
+
 Group related questions and confirm understanding before proceeding:
 
 **Essential Questions (Required):**
@@ -54,7 +56,6 @@ Group related questions and confirm understanding before proceeding:
      }]
    })
    ```
-   Note: User can select "Other" to specify alternatives like: Internal Tool, Content Platform, Marketplace, Developer Tool
 
 3. **Target Audience** (text input - just ask directly)
    - "Who are your primary users?"
