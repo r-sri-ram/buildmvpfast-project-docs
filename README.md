@@ -14,23 +14,23 @@ Generate professional project documentation directly from Claude Code. Create PR
 
 ## Installation
 
-### Option 1: Claude Code Plugin (Recommended)
+### Option 1: npx skills (Recommended)
 
-Install via Claude Code's built-in plugin system:
+Install skills directly using [npx skills](https://skills.sh):
 
 ```bash
-# Step 1: Add the marketplace
-/plugin marketplace add r-sri-ram/buildmvpfast-project-docs
+# Install all skills
+npx skills add r-sri-ram/buildmvpfast-project-docs
 
-# Step 2: Install the plugin
-/plugin install buildmvpfast-project-docs@buildmvpfast
+# Install specific skills only
+npx skills add r-sri-ram/buildmvpfast-project-docs --skill project-docs
+npx skills add r-sri-ram/buildmvpfast-project-docs --skill add-doc
+
+# List available skills
+npx skills add r-sri-ram/buildmvpfast-project-docs --list
 ```
 
-Or use the interactive plugin manager:
-```bash
-/plugin
-# Navigate to "Discover" tab and search for "buildmvpfast"
-```
+This automatically installs to your `~/.claude/skills/` directory.
 
 ### Option 2: Manual Installation
 
@@ -42,26 +42,6 @@ git clone https://github.com/r-sri-ram/buildmvpfast-project-docs.git
 
 # Copy skills to Claude Code skills directory
 cp -r buildmvpfast-project-docs/skills/* ~/.claude/skills/
-```
-
-### Option 3: Project-Level Installation
-
-Add to your project's `.claude/settings.json` for team sharing:
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "buildmvpfast": {
-      "source": {
-        "source": "github",
-        "repo": "r-sri-ram/buildmvpfast-project-docs"
-      }
-    }
-  },
-  "enabledPlugins": {
-    "buildmvpfast-project-docs@buildmvpfast": true
-  }
-}
 ```
 
 ## Quick Start
