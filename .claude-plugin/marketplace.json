@@ -1,17 +1,17 @@
 {
   "name": "buildmvpfast",
-  "description": "BuildMVPFast tools for Claude Code",
   "owner": {
     "name": "BuildMVPFast",
-    "url": "https://buildmvpfast.com"
+    "email": "hello@buildmvpfast.com"
   },
   "plugins": [
     {
       "name": "buildmvpfast-project-docs",
       "description": "Generate professional project documentation (15 document types) with a single command",
-      "source": {
-        "type": "local",
-        "path": "."
+      "source": ".",
+      "version": "1.0.0",
+      "author": {
+        "name": "BuildMVPFast"
       }
     }
   ]
