@@ -1,5 +1,8 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "buildmvpfast",
+  "version": "1.0.0",
+  "description": "BuildMVPFast tools for Claude Code - Professional project documentation generation",
   "owner": {
     "name": "BuildMVPFast",
     "email": "hello@buildmvpfast.com"
@@ -8,11 +11,13 @@
     {
       "name": "buildmvpfast-project-docs",
       "description": "Generate professional project documentation (15 document types) with a single command",
-      "source": ".",
       "version": "1.0.0",
       "author": {
-        "name": "BuildMVPFast"
-      }
+        "name": "BuildMVPFast",
+        "email": "hello@buildmvpfast.com"
+      },
+      "source": "./plugins/buildmvpfast-project-docs",
+      "category": "development"
     }
   ]
 }
