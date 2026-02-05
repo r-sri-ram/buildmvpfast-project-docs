@@ -7,23 +7,5 @@
     "email": "hello@buildmvpfast.com"
   },
   "repository": "https://github.com/r-sri-ram/buildmvpfast-project-docs",
-  "license": "MIT",
-  "skills": [
-    {
-      "name": "project-docs",
-      "path": "./skills/project-docs"
-    },
-    {
-      "name": "analyze-project",
-      "path": "./skills/analyze-project"
-    },
-    {
-      "name": "add-doc",
-      "path": "./skills/add-doc"
-    },
-    {
-      "name": "update-docs",
-      "path": "./skills/update-docs"
-    }
-  ]
+  "license": "MIT"
 }
