@@ -28,46 +28,101 @@ Generate comprehensive, professional project documentation with cross-referenced
 
 ### Step 1: Gather Project Information
 
-Ask the user these questions conversationally (not all at once). Group related questions and confirm understanding before proceeding:
+**IMPORTANT: Use the `AskUserQuestion` tool for ALL selection questions.** This provides clickable options instead of requiring manual typing.
+
+Group related questions and confirm understanding before proceeding:
 
 **Essential Questions (Required):**
 
-1. **Project Name & Vision**
+1. **Project Name & Vision** (text input - just ask directly)
    - "What's your project called?"
    - "In one sentence, what problem does it solve?"
 
-2. **Project Type**
-   - "What type of project is this?"
-   - Options: SaaS, E-commerce, Mobile App, API/Backend Service, Internal Tool, Content Platform, Marketplace, Developer Tool, Other
+2. **Project Type** - USE AskUserQuestion tool:
+   ```
+   AskUserQuestion({
+     questions: [{
+       question: "What type of project is this?",
+       header: "Project Type",
+       options: [
+         { label: "SaaS", description: "Software as a Service - subscription-based web application" },
+         { label: "E-commerce", description: "Online store selling products or services" },
+         { label: "Mobile App", description: "iOS/Android native or hybrid mobile application" },
+         { label: "API/Backend", description: "API service, microservice, or backend system" }
+       ],
+       multiSelect: false
+     }]
+   })
+   ```
+   Note: User can select "Other" to specify alternatives like: Internal Tool, Content Platform, Marketplace, Developer Tool
 
-3. **Target Audience**
+3. **Target Audience** (text input - just ask directly)
    - "Who are your primary users?"
    - "What are their main pain points?"
 
-4. **Core Features**
+4. **Core Features** (text input - just ask directly)
    - "What are the 3-5 most important features?"
    - "What makes your solution unique?"
 
-5. **Tech Stack Preferences**
-   - "Do you have preferences for frontend/backend/database?"
-   - "Any specific frameworks or languages required?"
+5. **Tech Stack Preferences** - USE AskUserQuestion tool:
+   ```
+   AskUserQuestion({
+     questions: [
+       {
+         question: "What frontend framework do you prefer?",
+         header: "Frontend",
+         options: [
+           { label: "React", description: "Most popular, large ecosystem" },
+           { label: "Vue", description: "Progressive, easy learning curve" },
+           { label: "Next.js", description: "React with SSR, recommended for SEO" },
+           { label: "No preference", description: "Let me suggest based on project needs" }
+         ],
+         multiSelect: false
+       },
+       {
+         question: "What backend/database do you prefer?",
+         header: "Backend",
+         options: [
+           { label: "Node.js + PostgreSQL", description: "JavaScript full-stack, relational DB" },
+           { label: "Python + PostgreSQL", description: "Django/FastAPI, great for AI/ML" },
+           { label: "Supabase", description: "Firebase alternative, includes auth & DB" },
+           { label: "No preference", description: "Let me suggest based on project needs" }
+         ],
+         multiSelect: false
+       }
+     ]
+   })
+   ```
 
 **Optional Questions (Ask if relevant):**
 
-6. **Timeline & Milestones**
+6. **Timeline & Milestones** (text input)
    - "Any specific deadlines or milestones?"
 
-7. **Team Size**
+7. **Team Size** (text input)
    - "How many developers will work on this?"
 
-8. **Budget Considerations**
+8. **Budget Considerations** (text input)
    - "Any budget constraints affecting technology choices?"
 
-9. **Business Model**
-   - "How will this project generate revenue?"
-   - Options: Subscription, One-time purchase, Freemium, Advertising, Marketplace fees, Enterprise licensing, Other
+9. **Business Model** - USE AskUserQuestion tool:
+   ```
+   AskUserQuestion({
+     questions: [{
+       question: "How will this project generate revenue?",
+       header: "Revenue",
+       options: [
+         { label: "Subscription", description: "Monthly/yearly recurring payments" },
+         { label: "Freemium", description: "Free tier with paid upgrades" },
+         { label: "One-time purchase", description: "Single payment for lifetime access" },
+         { label: "Marketplace fees", description: "Commission on transactions" }
+       ],
+       multiSelect: false
+     }]
+   })
+   ```
 
-10. **Competition & Differentiation**
+10. **Competition & Differentiation** (text input)
     - "Who are your main competitors?"
     - "What's your unique advantage?"
 
@@ -97,8 +152,22 @@ Before generating, summarize the gathered information:
 - Database: [Choice or "To be determined"]
 
 **Business Model:** [Model]
+```
 
-Ready to generate documentation? (Yes/No)
+Then USE AskUserQuestion tool to confirm:
+```
+AskUserQuestion({
+  questions: [{
+    question: "Ready to generate documentation?",
+    header: "Confirm",
+    options: [
+      { label: "Yes, generate docs", description: "Start generating all 6 core documents" },
+      { label: "Let me modify", description: "I want to change some details first" },
+      { label: "Start over", description: "Begin the wizard again from scratch" }
+    ],
+    multiSelect: false
+  }]
+})
 ```
 
 ### Step 3: Generate Documents
@@ -121,23 +190,42 @@ Generate documents in this order (each using context from previous):
 
 ### Step 4: Custom Documents
 
-After core docs, ask:
-```
-Core documentation complete! Would you like to generate any custom documents?
+After core docs, USE AskUserQuestion tool with multiSelect:
 
-Available:
-1. API Specification - REST/GraphQL endpoint documentation
-2. QA Testing - Testing strategy and test cases
-3. Integration Architecture - Third-party service integrations
-4. Performance Optimization - Caching, optimization guidelines
-5. Legal Compliance - Privacy policy, GDPR, terms of service
-6. Marketing SEO - Marketing strategy, SEO plan
-7. Accessibility Guidelines - WCAG compliance, a11y standards
-8. Monetization Plan - Pricing strategy, revenue models
-9. Governance Plan - Project governance, decision-making
-
-Enter numbers (e.g., "1,2,5") or "none" to skip:
 ```
+AskUserQuestion({
+  questions: [{
+    question: "Would you like to generate any custom documents? Select all that apply.",
+    header: "Custom Docs",
+    options: [
+      { label: "API Specification", description: "REST/GraphQL endpoint documentation" },
+      { label: "QA Testing", description: "Testing strategy and test cases" },
+      { label: "Integration Architecture", description: "Third-party service integrations" },
+      { label: "None", description: "Skip custom documents for now" }
+    ],
+    multiSelect: true
+  }]
+})
+```
+
+If user wants more options, offer a second selection:
+```
+AskUserQuestion({
+  questions: [{
+    question: "Any additional documents?",
+    header: "More Docs",
+    options: [
+      { label: "Performance Optimization", description: "Caching, optimization guidelines" },
+      { label: "Legal Compliance", description: "Privacy policy, GDPR, terms" },
+      { label: "Marketing SEO", description: "Marketing strategy, SEO plan" },
+      { label: "None", description: "No more documents needed" }
+    ],
+    multiSelect: true
+  }]
+})
+```
+
+Additional options if needed: Accessibility Guidelines, Monetization Plan, Governance Plan
 
 ---
 
@@ -199,7 +287,22 @@ ls -la package.json requirements.txt Cargo.toml go.mod pom.xml build.gradle comp
 - [Model 1]
 - [Model 2]
 
-Should I generate documentation based on this analysis? (Yes/No)
+```
+
+Then USE AskUserQuestion tool to confirm:
+```
+AskUserQuestion({
+  questions: [{
+    question: "Should I generate documentation based on this analysis?",
+    header: "Confirm",
+    options: [
+      { label: "Yes, generate all docs", description: "Generate all 6 core documents" },
+      { label: "Yes, let me customize", description: "I want to modify some details first" },
+      { label: "No, analyze again", description: "Re-analyze with different parameters" }
+    ],
+    multiSelect: false
+  }]
+})
 ```
 
 ### Step 4: Generate with Inferred Context
